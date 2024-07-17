@@ -19,7 +19,7 @@ spec:
   # If you installed Istio using Helm following the standard documentation, this would be "istio=ingress"
   # ingressgateway for istio default controller
   selector:
-    istio: {{.Spec.Istio.Gateway.IstioIngress}}
+    opendatahub: ingressgateway
     {{- with .Spec.Istio.Gateway.ControlPlane}}
     maistra.io/owner-name: {{.}}
     {{- end}}

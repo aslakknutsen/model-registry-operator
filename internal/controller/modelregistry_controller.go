@@ -20,6 +20,9 @@ import (
 	"context"
 	errors2 "errors"
 	"fmt"
+	"strings"
+	"text/template"
+
 	"github.com/banzaicloud/k8s-objectmatcher/patch"
 	"github.com/go-logr/logr"
 	authorino "github.com/kuadrant/authorino/api/v1beta2"
@@ -48,8 +51,6 @@ import (
 	klog "sigs.k8s.io/controller-runtime/pkg/log"
 	"sigs.k8s.io/controller-runtime/pkg/predicate"
 	"sigs.k8s.io/controller-runtime/pkg/reconcile"
-	"strings"
-	"text/template"
 )
 
 const (
@@ -539,10 +540,12 @@ func (r *ModelRegistryReconciler) createOrUpdateGatewayRoutes(ctx context.Contex
 
 	// get ingress gateway service
 	var serviceList corev1.ServiceList
-	labels := client.MatchingLabels{"istio": *params.Spec.Istio.Gateway.IstioIngress}
-	if params.Spec.Istio.Gateway.ControlPlane != nil {
-		labels["maistra.io/owner-name"] = *params.Spec.Istio.Gateway.ControlPlane
-	}
+	labels := client.MatchingLabels{"opendatahub": "ingressgateway"}
+	/*
+		if params.Spec.Istio.Gateway.ControlPlane != nil {
+			labels["maistra.io/owner-name"] = *params.Spec.Istio.Gateway.ControlPlane
+		}
+	*/
 	if err = r.Client.List(ctx, &serviceList, labels); err != nil {
 		return result, err
 	}
