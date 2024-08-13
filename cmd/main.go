@@ -19,13 +19,14 @@ package main
 import (
 	"context"
 	"flag"
+	"os"
+
 	authorino "github.com/kuadrant/authorino/api/v1beta2"
 	"github.com/opendatahub-io/model-registry-operator/internal/controller/config"
 	networking "istio.io/client-go/pkg/apis/networking/v1beta1"
 	security "istio.io/client-go/pkg/apis/security/v1beta1"
 	authentication "k8s.io/api/authentication/v1"
 	"k8s.io/client-go/discovery"
-	"os"
 
 	// Import all Kubernetes client auth plugins (e.g. Azure, GCP, OIDC, etc.)
 	// to ensure that exec-entrypoint and run can make use of them.
@@ -148,10 +149,10 @@ func main() {
 			isOpenShift = true
 		}
 		if g.Name == "authorino.kuadrant.io" {
-			hasAuthorino = true
+			hasAuthorino = false // avoid creating
 		}
 		if g.Name == "networking.istio.io" {
-			hasIstio = true
+			hasIstio = false // avoid creating
 		}
 	}
 

@@ -366,13 +366,16 @@ func (r *ModelRegistryReconciler) updateRegistryResources(ctx context.Context, p
 		}
 
 		// create simple openshift service route, if configured
-		result2, err = r.createOrUpdateRoute(ctx, params, registry, "http-route.yaml.tmpl")
-		if err != nil {
-			return result2, err
-		}
-		if result2 != ResourceUnchanged {
-			result = result2
-		}
+		// TODO: Removed for Platform capabillity
+		/*
+			result2, err = r.createOrUpdateRoute(ctx, params, registry, "http-route.yaml.tmpl")
+			if err != nil {
+				return result2, err
+			}
+			if result2 != ResourceUnchanged {
+				result = result2
+			}
+		*/
 	}
 
 	if r.HasIstio {

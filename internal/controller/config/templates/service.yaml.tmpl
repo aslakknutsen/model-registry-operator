@@ -12,6 +12,9 @@ metadata:
     app.kubernetes.io/created-by: model-registry-operator
     app.kubernetes.io/part-of: model-registry
     app.kubernetes.io/managed-by: model-registry-operator
+    routing.opendatahub.io/exported: true
+    platform.opendatahub.io/owner-name: {{.Name}}
+    platform.opendatahub.io/owner-kind: ModelRegistry
 spec:
   ports:
     - name: grpc-api
