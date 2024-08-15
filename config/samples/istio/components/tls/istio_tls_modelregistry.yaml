@@ -3,7 +3,8 @@ kind: ModelRegistry
 metadata:
   name: modelregistry-sample
   annotations:
-    routing.opendatahub.io/export-mode: public
+    routing.opendatahub.io/export-mode: public;external
+    security.opendatahub.io/enable-auth: true
 spec:
   istio:
     gateway:
