@@ -17,14 +17,14 @@ metadata:
     platform.opendatahub.io/owner-kind: ModelRegistry
 spec:
   ports:
-    - name: grpc-api
-      port: {{.Spec.Grpc.Port}}
-      protocol: TCP
-      appProtocol: grpc
     - name: http-api
       port: {{.Spec.Rest.Port}}
       protocol: TCP
       appProtocol: http
+    - name: grpc-api
+      port: {{.Spec.Grpc.Port}}
+      protocol: TCP
+      appProtocol: grpc
   selector:
     app: {{.Name}}
     component: model-registry
