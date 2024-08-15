@@ -2,6 +2,8 @@ apiVersion: modelregistry.opendatahub.io/v1alpha1
 kind: ModelRegistry
 metadata:
   name: modelregistry-sample
+  annotations:
+    routing.opendatahub.io/export-mode: public
 spec:
   istio:
     gateway:
